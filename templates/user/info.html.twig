@@ -1,0 +1,29 @@
+<?php
+    require_once __DIR__ . '/../../vendor/autoload.php';
+?>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Info</title>
+</head>
+<body>
+    <a href="/users/list">Вернуться к списку пользователей</a>
+    <h1>User Info</h1>
+    <ol>
+        <li>First Name: {{user.getFirstName()}}</li>
+        <li>Last Name: {{user.getLastName()}}</li>        
+        <li>Middle Name: {{user.getMiddleName()}}</li>
+        <li>Gender: {{user.getGender()}}</li>
+        <li>Email: {{user.getEmail()}}</li>
+        <li>Phone: {{user.getPhone()}}</li>
+        <li>Birth Date: {{user.getBirthDate()|date('Y-m-d')}}</li>
+        <li>Avatar Path: {{user.getAvatarPath()}}</li>
+    </ol>
+    <img src="/uploads/{{user.getAvatarPath()}}" alt="">
+    <a href="{{path('update_user_redirect', {id: user.getId})}}">Изменить данные</a>
+    <a href="{{path('delete_user', {id: user.getId})}}">Удалить пользователя</a> 
+
+</body>
+</html>

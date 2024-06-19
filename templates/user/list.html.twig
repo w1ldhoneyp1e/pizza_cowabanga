@@ -1,0 +1,23 @@
+{% extends "main.html.twig" %}
+{% block head %}
+    <title>List of users</title>
+{% endblock %}
+{% block content %}
+    <h1>List of users</h1>
+    <a href="{{path('index')}}">Вернуться в меню</a>
+    <table>
+    {% for user in users %}
+        <tr>
+        <td>{{user.getId}}</td>
+            <td>
+                <a href="{{path('show_user', {id: user.getId})}}">
+                    {{user.getFirstName}} {{user.getLastName}}
+                </a>
+                <br>
+                <a href="{{path('update_user_redirect', {id: user.getId})}}">Изменить</a>
+                <a href="{{path('delete_user', {id: user.getId})}}">Удалить</a>
+            </td>
+        <tr>
+    {% endfor %}
+    </table>
+{% endblock %}
