@@ -1,0 +1,87 @@
+* {
+    margin: 0;
+}
+.info {
+    position: relative;
+    width: 68%;
+    border: 2px #A9D376 solid;
+    background-color: #FEFEFE;
+    display: flex;
+    border-radius: 20px;
+    margin: 0 8.6%;
+    padding: 90px 7.1%;
+    justify-content: space-between;
+    margin-bottom: 200px;
+}
+.info__image {
+    width: 41%;
+    height: 530px;
+    background-size: cover;
+}
+.info__content {
+    display: flex;
+    flex-direction: column;
+    color: #262626;
+    font-family: 'Euclid Circular B';
+    font-size: 20px;
+    font-weight: 400;
+    width: 40%;
+}
+.content__name {
+    font-size: 30px;
+    margin-bottom: 14px;
+    font-weight: 700;
+}
+.content__discription {
+    margin-bottom: 32px;
+}
+.content__ingredients{
+    margin-bottom: 32px;
+}
+.content__button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    width: 100%;
+    background-color: #175B1C;
+    color: #F3F3F7;
+    border-radius: 25px;
+    font-family: 'Euclid Circular B';
+    font-size: 27px;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+}
+.content__nutritional-value {
+    border: 2px #A9D376 solid;
+    background-color: #F3F3F7;
+    border-radius: 20px;
+    display: flex;
+    color: #262626;
+    font-family: 'Euclid Circular B';
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+    padding: 13px 10%;
+    margin-bottom: 18px;
+}
+.nutritional__headers {
+    display: flex;
+    flex-direction: column;
+}
+.nutritional__values {
+    display: flex;
+    flex-direction: column;
+}
+.delete-button {
+    position: absolute;
+    display: block;
+    width: 40px;
+    height: 40px;
+    background-image: url('/images/red-cross.svg');
+    background-size: cover;
+    right: 7.1%;
+    top: 90px;
+}

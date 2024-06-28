@@ -1,0 +1,51 @@
+.login__form{
+    width: 657px;
+    height: 698px;
+    background-image: url('/images/login-form.png');
+    margin: 67px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 40px;
+    background-repeat: no-repeat;
+    
+}
+.login__email-input {
+    height: 60px;
+    width: 495px;
+    border-radius: 20px;
+    background-color: #A9D376;
+    color: #fff;
+    font-family: 'Euclid Circular B';
+    font-size: 27px;
+    font-weight: 500;
+    margin: 0 auto;
+    margin-bottom: 33px;
+    text-align: center;
+}
+.login__password-input {
+    height: 60px;
+    width: 495px;
+    border-radius: 20px;
+    background-color: #A9D376;
+    color: #fff;
+    font-family: 'Euclid Circular B';
+    font-size: 27px;
+    font-weight: 500;
+    margin: 0 auto;
+    margin-bottom: 33px;
+    text-align: center;
+}
+.login__button {
+    height: 60px;
+    width: 495px;
+    border-radius: 20px;
+    background-color: #175B1C;
+    color: #fff;
+    font-family: 'Euclid Circular B';
+    font-size: 27px;
+    font-weight: 500;
+    margin: 0 auto;
+    margin-bottom: 33px;
+    text-align: center;
+}

@@ -1,0 +1,33 @@
+{% extends "main.html.twig" %}
+    {% block head %}
+    {{parent()}}
+    <link rel="stylesheet" href="/css/info.css">
+    <title>{{product.getName}}</title>
+    {% endblock %}
+
+    {% block content %}
+    <content class="info">
+        <a href="{{path('delete_product', {id: product.getId})}}" class="delete-button"></a>
+        <img src="/images/{{product.getImagePath}}" class="info__image">
+        <div class="info__content">
+            <p class="content__name">{{product.getName}}</p>
+            <p class="content__discription">{{product.getDiscription}}</p>
+            <p class="content__ingredients">{{product.getIngredients}}</p>
+            <div class="content__nutritional-value">
+                            <div class="nutritional__headers">
+                                <span>Энерг.ценность</span>
+                                <span>Белки</span>
+                                <span>Жиры</span>
+                                <span>Углеводы</span>
+                            </div>
+                            <div class="nutritional__values">
+                                <span id="cals">{{product.getCalories}} ккал</span>
+                                <span id="prots">{{product.getProteins}} г</span>
+                                <span id="fats">{{product.getFats}} г</span>
+                                <span id="carbs">{{product.getCarbs}} г</span>
+                            </div>
+                        </div>
+            <a href="{{path('buy', {id: product.getId})}}" class="content__button">заказать за {{product.getPrice}}₽</a>
+        </div>
+    </content>
+    {% endblock %}

@@ -1,0 +1,12 @@
+<div class="product">
+    <div class="product__img-container">
+        <a class="product__img" href="{{path('show_product', {id: product.getId})}}" style="background-image: url('/images/{{product.getImagePath}}');"></a>
+        <span class="product__calories"></span>
+    </div>
+    <a href="{{path('show_product', {id: product.getId})}}" class="product__name">{{product.getName}}</a>
+    <p class="product__ingredients">{{product.getIngredients}}</p>
+    <div class="product__price-and-buy">
+        <span class="product__price">от {{product.getPrice}}₽</span>
+        <a href="{{path('buy', {id: product.getId})}}" class="product_buy-button">схватить</a>
+    </div>
+</div>

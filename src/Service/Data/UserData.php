@@ -6,18 +6,28 @@ class UserData
 {
     public function __construct(
         private ?int $userId,
-        private string $firstName,
-        private string $lastName,
-        private ?string $middleName,
-        private string $gender,
-        private \DateTimeImmutable $birthDate,
         private string $email,
+        private ?string $password,
+        private ?string $firstName,
+        private ?string $lastName,
         private ?string $phone,
+        private ?string $adress,
         private ?string $avatarPath)
     {
 
     }
-
+    public function getId(): ?int
+    {
+        return $this->userId;
+    }
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
     public function getFirstName(): ?string
     {
         return $this->firstName;
@@ -26,33 +36,45 @@ class UserData
     {
         return $this->lastName;
     }
-    public function getMiddleName(): ?string
+    public function getPhone(): ?string
     {
-        return $this->middleName;
+        return $this->phone;
     }
-    public function getId(): ?int
+    public function getAdress(): ?string
     {
-        return $this->userId;
+        return $this->adress;
     }
     public function getAvatarPath(): ?string
     {
         return $this->avatarPath;
     }
-    public function getBirthDate(): \DateTimeImmutable
+    
+    public function setEmail(string $email): void
     {
-        return $this->birthDate; 
+        $this->email = $email;
     }
-    public function getGender(): string
+    public function setPassword(string $password): void
     {
-        return $this->gender;
+        $this->password = $password;
     }
-    public function getPhone(): ?string
+    public function setFirstName(string $firstName): void
     {
-        return $this->phone;
+        $this->firstName = $firstName;
     }
-    public function getEmail(): ?string
+    public function setLastName(string $lastName): void
     {
-        return $this->email;
+        $this->lastName = $lastName;
     }
-
+    public function setPhone(string $phone): void
+    {
+        $this->phone = $phone;
+    }
+    public function setAdress(string $gender): void
+    {
+        $this->gender = $gender;
+    }
+    public function setAvatarPath(string $avatarPath): void
+    {
+        $this->avatarPath = $avatarPath;
+    }
 }

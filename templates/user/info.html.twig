@@ -1,29 +1,43 @@
-<?php
-    require_once __DIR__ . '/../../vendor/autoload.php';
-?>
-
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Info</title>
-</head>
-<body>
-    <a href="/users/list">Вернуться к списку пользователей</a>
-    <h1>User Info</h1>
-    <ol>
-        <li>First Name: {{user.getFirstName()}}</li>
-        <li>Last Name: {{user.getLastName()}}</li>        
-        <li>Middle Name: {{user.getMiddleName()}}</li>
-        <li>Gender: {{user.getGender()}}</li>
-        <li>Email: {{user.getEmail()}}</li>
-        <li>Phone: {{user.getPhone()}}</li>
-        <li>Birth Date: {{user.getBirthDate()|date('Y-m-d')}}</li>
-        <li>Avatar Path: {{user.getAvatarPath()}}</li>
-    </ol>
-    <img src="/uploads/{{user.getAvatarPath()}}" alt="">
-    <a href="{{path('update_user_redirect', {id: user.getId})}}">Изменить данные</a>
-    <a href="{{path('delete_user', {id: user.getId})}}">Удалить пользователя</a> 
-
-</body>
-</html>
+{% extends "main.html.twig" %}
+{% block head %}
+    {{ parent() }}
+    <link rel="stylesheet" href="/css/user-info.css">
+    <title>твой профиль</title>
+{% endblock %}
+{% block content %}
+    <p class="profile-title">
+        <span>твой профиль</span>
+        <a href="{{path('delete_user', {id: user.getId})}}" class="delete-button"></a>
+    </p>
+    <div class="profile">
+        <div class="img-container">
+            <p class="label">ваше фото</p>
+            <img src="/images/profile-photo.png" alt="">
+            <div>
+                <a href="{{path('show_update_user', {id: user.getId})}}" class="update-button">изменить данные</a>
+            </div>
+        </div>
+        <div class="column-info">
+            <div class="container">
+                <div class="label">имя</div>
+                <div class="value">{{user.getFirstName}}</div>
+            </div>
+            <div class="container">
+                <div class="label">фамилия</div>
+                <div class="value">{{user.getLastName}}</div>
+            </div>
+            <div class="container">
+                <div class="label">телефон</div>
+                <div class="value">{{user.getPhone}}</div>
+            </div>
+            <div class="container">
+                <div class="label">адрес</div>
+                <div class="value">{{user.getAdress}}</div>
+            </div>
+            <div class="container">
+                <div class="label">email</div>
+                <div class="value">{{user.getEmail}}</div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -6,18 +6,28 @@ class User
 {
     public function __construct(
         private ?int $userId,
-        private string $firstName,
-        private string $lastName,
-        private ?string $middleName,
-        private string $gender,
-        private \DateTimeImmutable $birthDate,
         private string $email,
+        private ?string $password,
+        private ?string $firstName,
+        private ?string $lastName,
         private ?string $phone,
+        private ?string $adress,
         private ?string $avatarPath)
     {
 
     }
-
+    public function getId(): ?int
+    {
+        return $this->userId;
+    }
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
     public function getFirstName(): ?string
     {
         return $this->firstName;
@@ -26,35 +36,27 @@ class User
     {
         return $this->lastName;
     }
-    public function getMiddleName(): ?string
+    public function getPhone(): ?string
     {
-        return $this->middleName;
+        return $this->phone;
     }
-    public function getId(): ?int
+    public function getAdress(): ?string
     {
-        return $this->userId;
+        return $this->adress;
     }
     public function getAvatarPath(): ?string
     {
         return $this->avatarPath;
     }
-    public function getBirthDate(): \DateTimeImmutable
-    {
-        return $this->birthDate; 
-    }
-    public function getGender(): string
-    {
-        return $this->gender;
-    }
-    public function getPhone(): ?string
-    {
-        return $this->phone;
-    }
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
 
+    public function setEmail(string $email): void
+    {
+        $this->email = $email;
+    }
+    public function setPassword(string $password): void
+    {
+        $this->password = $password;
+    }
     public function setFirstName(string $firstName): void
     {
         $this->firstName = $firstName;
@@ -63,28 +65,16 @@ class User
     {
         $this->lastName = $lastName;
     }
-    public function setMiddleName(string $middleName): void
-    {
-        $this->middleName = $middleName;
-    }
-    public function setAvatarPath(string $avatarPath): void
-    {
-        $this->avatarPath = $avatarPath;
-    }
-    public function setBirthDay(string $birthDay): void
-    {
-        $this->birthDay = $birthDay;
-    }
-    public function setGender(string $gender): void
-    {
-        $this->gender = $gender;
-    }
     public function setPhone(string $phone): void
     {
         $this->phone = $phone;
     }
-    public function setEmail(string $email): void
+    public function setAdress(string $gender): void
     {
-        $this->email = $email;
+        $this->gender = $gender;
+    }
+    public function setAvatarPath(string $avatarPath): void
+    {
+        $this->avatarPath = $avatarPath;
     }
 }

@@ -7,10 +7,12 @@ use App\Repository\UserRepository;
 class UserService implements UserServiceInterface
 {
     private UserRepository $userRepository;
+    private PasswordHasher $passwordHasher;
 
-    public function __construct(UserRepository $userRepository)
+    public function __construct(UserRepository $userRepository, PasswordHasher $passwordHasher)
     {
         $this->userRepository =  $userRepository;
+        $this->passwordHasher =  $passwordHasher;
     }   
     public function find(int $id): UserData
     {
@@ -31,17 +33,16 @@ class UserService implements UserServiceInterface
    
     public function updateInfo(UserData $userData)
     {
-        if ($this->isEmailUniq($userData) && $this->isPhoneUniq($userData))
+        if ($this->isEmailUniq($userData))
         {
-            $user = $this->userDataToUser($userData);
-            // $user->setFirstName($userData->getFirstName());
-            // $user->setLastName($userData->getLastName());
-            // $user->setMiddleName($userData->getMiddleName());
-            // $user->setBirthDay($userData->getBirthDate());
-            // $user->setAvatarPath($userData->getAvatarPath());
-            // $user->setGender($userData->getGender());
-            // $user->setEmail($userData->getEmail());
-            // $user->setPhone($userData->getPhone());
+            $user = $this->userRepository->findById($userData->getId());
+            empty($userData->getEmail()) ? null : $user->setEmail($userData->getEmail());
+            empty($userData->getPassword()) ? null : $user->setPassword($userData->getPassword());
+            empty($userData->getAdress()) ? null : $user->setAdress($userData->getAdress());
+            empty($userData->getAvatarPath()) ? null : $user->setAvatarPath($userData->getAvatarPath());
+            empty($userData->getPhone()) ? null : $user->setPhone($userData->getPhone());
+            empty($userData->getFirstName()) ? null : $user->setFirstName($userData->getFirstName());
+            empty($userData->getLastName()) ? null : $user->setLastName($userData->getLastName());
             $this->userRepository->store($user);
         }
     }
@@ -102,14 +103,13 @@ class UserService implements UserServiceInterface
     {
         $user = new User(
             null,
-            $userData->getFirstName(),
-            $userData->getLastName(),
-            empty($userData->getMiddleName()) ? null : $userData->getMiddleName(),
-            $userData->getGender(),
-            $userData->getBirthDate(),
             $userData->getEmail(),
+            empty($userData->getPassword()) ? null : $this->passwordHasher->hash($userData->getPassword()),
+            empty($userData->getFirstName()) ? null : $userData->getFirstName(),
+            empty($userData->getLastName()) ? null : $userData->getLastName(),
             empty($userData->getPhone()) ? null : $userData->getPhone(),
-            empty($userData->getAvatarPath()) ? null : $userData->getAvatarPath(),
+            empty($userData->getAdress()) ? null : $userData->getAdress(),
+            empty($userData->getAvatarPath()) ? null : $userData->getAvatarPath()
         );
         return $user;
     }
@@ -117,14 +117,13 @@ class UserService implements UserServiceInterface
     {
         $userData = new UserData(
             $user->getId(),
-            $user->getFirstName(),
-            $user->getLastName(),
-            empty($user->getMiddleName()) ? null : $user->getMiddleName(),
-            $user->getGender(),
-            $user->getBirthDate(),
             $user->getEmail(),
+            $user->getPassword(),
+            empty($user->getFirstName()) ? null : $user->getFirstName(),
+            empty($user->getLastName()) ? null : $user->getLastName(),
             empty($user->getPhone()) ? null : $user->getPhone(),
-            empty($user->getAvatarPath()) ? null : $user->getAvatarPath(),
+            empty($user->getAdress()) ? null : $user->getAdress(),
+            empty($user->getAvatarPath()) ? null : $user->getAvatarPath()
         );
         return $userData;
     }

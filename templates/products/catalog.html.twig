@@ -1,0 +1,20 @@
+{% extends "main.html.twig" %}
+{% block head %}
+    {{ parent() }}
+    <link rel="stylesheet" href="/css/catalog.css">
+{% endblock %}
+
+{% block slider %}
+    <div>
+    
+    </div>
+{% endblock %}
+{% block content %}
+    {% block products %}
+        <div class="products">
+            {% for product in products %}
+                {% include "/products/card.html.twig" %}
+            {% endfor %}
+        </div>
+    {% endblock %}
+{% endblock %}

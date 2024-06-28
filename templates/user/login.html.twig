@@ -1,0 +1,16 @@
+{% extends "main.html.twig" %}
+{% block head %}
+    {{ parent() }}
+    <link rel="stylesheet" href="/css/login.css">
+    <script src="/scripts/login.js"></script>
+    <title>назови себя</title>
+{% endblock %}
+{% block content %}
+    {# <div class="login-container"> #}
+        <form id="login-form" class="login__form">
+            <input id="email" type="email" class="login__email-input" placeholder="email"> 
+            <input id="password" type="password" class="login__password-input" placeholder="пароль">
+            <button type="submit" class="login__button">войти</button>
+        </form>
+    {# </div> #}
+{% endblock %}

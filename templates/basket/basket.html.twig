@@ -1,0 +1,15 @@
+{% extends "main.html.twig" %}
+{% block content %}
+    <p class="title">Корзина</p>
+    <div class="item-container">
+        {% for product in basket %}
+            {% include "item.html.twig" %}
+        {% endfor %}
+    </div>
+    <div class="separator"></div>
+    <div class="total">
+        <span class="total__amount"></span>
+        <span class="total__price"></span>
+    </div>
+    <button class="order-button">Оформить заказ</button>
+{% endblock %}

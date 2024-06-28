@@ -1,15 +1,44 @@
 <html lang="en">
-{% block head %}
 <head>
+{% block head %}
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/fonts/euclid.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+{% endblock %}
 </head>
-{% endblock %}
-{% block content %}
 <body>
-    <a href="/user/add">Создать пользователя</a>
-    <a href="/users/list">Посмотреть пользователей</a>
+
+    {% block header %}
+        <header class="header">
+            <div class="header__left-block">
+                <a class="logo" href="/"></a>
+                <a class="add-button" href="{{path('show_admin')}}">добавить пиццу</a>
+            </div>
+            <div class="header__right-block">
+                <a href="{{path('show_login_page')}}" class="login">войти</a>
+                <a class="basket"> 
+                    <span class="basket-name">заказы</span>
+                    <span class="basket-img"></span>
+                </a>
+            </div>
+        </header>
+    {% endblock %}
+
+    {% block content %}
+    {% endblock %} 
+
+    {% block footer %}
+        <footer class="footer">
+            <div class="footer__container">
+                <span class="footer__label">кавабанга © 2024</span>
+                <div class="text-container">
+                    <span class="footer__text">правовая информация</span>
+                    <span class="footer__text">о нас</span>
+                    <span class="footer__text">помощь</span>
+                </div>
+            </div>
+        </footer>
+    {% endblock %}
 </body>
-{% endblock %}
 </html>

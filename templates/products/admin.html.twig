@@ -1,0 +1,97 @@
+{% extends "main.html.twig" %}
+{% block head %}
+    {{ parent() }}
+    <link rel="stylesheet" href="/css/admin.css">
+    <script src="/scripts/admin.js"></script>
+    <title>создать пиццу</title>
+{% endblock %}
+
+{% block content %}
+    <button action="/product/add" type="submit" form="new_product" class="font-properties submit-button">добавить новую пиццу</button>
+    <div class="admin__content">
+        <div class="admin__first-part">
+            <div class="left-column">
+                <form id="new_product">
+                    <div class="field-container">
+                        <label for="name-input" class="font-properties label">название пиццы</label>
+                        <input type="text" id="name-input" name="name" class="text-input" title="" placeholder="">
+                    </div>
+                    <div class="field-container">
+                        <label for="ingredients-input" class="font-properties label">состав</label>
+                        <textarea name="ingredients" id="ingredients-input" class="text-input" style="height: 194px;"></textarea>
+                    </div>
+                    <div class="field-container">
+                        <label for="price-input" class="font-properties label">цена</label>
+                        <input type="text" id="price-input" name="price" class="text-input" title="" placeholder="">
+                    </div>
+                    <div class="field-container">
+                        <p class="font-properties label">картинка</p>
+                        <label for="img-input" >
+                            <img src="/images/img-input.png" class="img-input" alt="картинка">
+                        </label>
+                        <input id="img-input" name="img" class="hidden" type="file" accept="image/jpeg, image/jpg, image/png, image/gif">
+                    </div>
+                </form>
+            </div>
+            <div class="right-column">
+                <form id="new_product" class="right-form">
+                    <div class="field-container">
+                        <label for="description-input" class="font-properties label">описание</label>
+                        <textarea name="description" id="description-input" class="text-input" style="height: 158px;"></textarea>
+                    </div>
+                    <div class="field-container">
+                        <p class="font-properties label">пищевая ценность</p>
+                        <label for="calories-input"></label>
+                        <input type="text" name="" id="calories-input" class="text-input" title="" placeholder="">
+                        <label for="proteins-input"></label>
+                        <input type="text" name="" id="proteins-input" class="text-input" title="" placeholder="">
+                        <label for="fats-input"></label>
+                        <input type="text" name="" id="fats-input" class="text-input" title="" placeholder="">
+                        <label for="carbs-input"></label>
+                        <input type="text" name="" id="carbs-input" class="text-input" title="" placeholder="">
+                    </div>
+                </form>
+                <p class="font-properties preview-card-title">превью карточки</p>
+                <div class="card-preview">
+                    <img src="/images/preview-card.png" class="card-preview__img" alt="картинка">
+                    <p class="card-preview__name">название вашей пиццы</p>
+                    <p class="card-preview__ingredients">состав и ингредиенты</p>
+                    <div class="card-preview__price-and-button">
+                        <span class="card-preview__price">***₽</span>
+                        <span class="card-preview__button">схватить</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="admin__second-part">
+            <p class="font-properties preview-page-title">превью странички</p>
+            <div class="page-preview">
+                <div class="page-preview__info">
+                    <div class="info__img-container">
+                        <img src="/images/preview-pizza.png" class="info__image" alt="картинка">
+                    </div>
+                    <div class="info__content">
+                        <p class="content__name" id="page-preview-name">название вашей пиццы</p>
+                        <p class="content__discription">размер, параметры, пара красивых слов</p>
+                        <p class="content__ingredients">состав и ингредиенты</p>
+                        <div class="content__nutritional-value">
+                            <div class="nutritional__headers">
+                                <span>Энерг.ценность</span>
+                                <span>Белки</span>
+                                <span>Жиры</span>
+                                <span>Углеводы</span>
+                            </div>
+                            <div class="nutritional__values">
+                                <span id="cals">*** ккал</span>
+                                <span id="prots">** г</span>
+                                <span id="fats">** г</span>
+                                <span id="carbs">** г</span>
+                            </div>
+                        </div>
+                        <button class="content__button">тащи в логово за ***₽</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

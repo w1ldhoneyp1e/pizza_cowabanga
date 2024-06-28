@@ -1,46 +1,48 @@
 {% extends "main.html.twig" %}
 {% block head %}
-    {{parent()}}
-    <title>User Update Form</title>
+    {{ parent() }}
+    <link rel="stylesheet" href="/css/user-info.css">
+    <script src="/scripts/user-update.js"></script>
+    <title>твой профиль</title>
 {% endblock %}
 {% block content %}
-    <a href="{{path('show_all_users')}}">Вернуться к списку пользователей</a>
-    <h1>User Update Form</h1>
-    
-    <form action="{{path('update_user_data', {id: user.getId})}}" method="post" enctype="multipart/form-data">
-        <div>
-            <label for="first_name">First Name:</label>
-            <input name="first_name" id="first_name" type="text" value="{{user.getFirstName()}}">
+    <p class="profile-title">твой профиль</p>
+    <form class="profile" id="profile">
+        <div class="img-container">
+            <p class="label">ваше фото</p>
+            <label for="img-input">
+                <img class="img" src="/images/profile-photo.png" alt="">
+            </label>
+            <input id="img-input" name="img" class="hidden" type="file" accept="image/jpeg, image/jpg, image/png, image/gif">
+            <div>
+                <button type="submit" href="{{path('update_user', {id: user.getId})}}" class="update-button">обновить</button>
+            </div>
         </div>
-        <div>
-            <label for="last_name">Last Name:</label>
-            <input name="last_name" id="last_name" type="text" value="{{user.getLastName()}}">
+        <div class="column-info">
+            <div class="container">
+                <div class="label">имя</div>
+                <input class="value" id="first-name" value="{{user.getFirstName}}">
+            </div>
+            <div class="container">
+                <div class="label">фамилия</div>
+                <input class="value" type="text" id="last-name" value="{{user.getLastName}}">
+            </div>
+            <div class="container">
+                <div class="label">телефон</div>
+                <input class="value" id="phone" value="{{user.getPhone}}">
+            </div>
+            <div class="container">
+                <div class="label">адрес</div>
+                <input class="value" id="adress" value="{{user.getAdress}}">
+            </div>
+            <div class="container">
+                <div class="label">email</div>
+                <input class="value" id="email" value="{{user.getEmail}}">
+            </div>
+            <div class="container">
+                <div class="label">password</div>
+                <input type="password" class="value" id="password" value="">
+            </div>
         </div>
-        <div>
-            <label for="middle_name">Middle Name:</label>
-            <input name="middle_name" id="middle_name" type="text" value="{{user.getMiddleName()}}">
-        </div>
-        <div>
-            <label for="gender">Your gender:</label>
-            <input name="gender" id="gender" type="text" value="{{user.getGender()}}">
-        </div>
-        <div>
-            <label for="birth_date">Birthday:</label>
-            <input name="birth_date" id="birth_date" type="date" value="{{user.getBirthDate()|date('Y-m-d')}}">
-        </div>
-        <div>
-            <label for="email">Email:</label>
-            <input name="email" id="email" type="text" value="{{user.getEmail()}}">
-        </div>
-        <div>
-            <label for="phone">Phone:</label>
-            <input name="phone" id="phone" type="text" value="{{user.getPhone()}}">
-        </div>
-        <div>
-            <label for="image">Выберите изображение:</label>
-            <input type="file" name="image" id="image" accept="image/png, image/jpg, image/jpeg, image/gif" value="">
-        </div>
-        <img src="/uploads/{{user.getAvatarPath()}}">
-        <button type="submit">Submit</button>
     </form>
 {% endblock %}

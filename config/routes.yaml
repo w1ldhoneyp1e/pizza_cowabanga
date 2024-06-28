@@ -1,18 +1,23 @@
-register_user_form:
-   path: /user/add
+index:
+   path: /
    methods: GET
-   controller: App\Controller\UserController::showRegisterForm
+   controller: App\Controller\ProductController::main
+
+show_register_page:
+   path: /register
+   methods: GET
+   controller: App\Controller\UserController::showRegisterPage
+
+show_login_page:
+   path: /login
+   methods: GET
+   controller: App\Controller\UserController::showLoginPage
 
 register_user:
    path: /user/register
    methods: POST
    controller: App\Controller\UserController::registerUser
    
-index:
-   path: /
-   methods: GET
-   controller: App\Controller\UserController::main
-
 delete_user:
    path: /user/delete/{id}
    methods: GET
@@ -32,16 +37,49 @@ show_user:
    requirements: 
     id: '\d+'
 
-update_user_data:
+update_user:
    path: /user/update/data/{id}
    methods: POST
    controller: App\Controller\UserController::updateUser
    requirements: 
     id: '\d+'
 
-update_user_redirect:
+show_update_user:
    path: /user/update/{id}
    methods: GET
-   controller: App\Controller\UserController::updateUserRedirect
+   controller: App\Controller\UserController::showUpdateUser
    requirements: 
     id: '\d+'
+
+show_product:
+   path: /product/{id}
+   methods: GET
+   controller: App\Controller\ProductController::showProductInfo
+   requirements: 
+      id: '\d+'
+
+
+   
+show_admin:
+   path: /product/new
+   methods: GET
+   controller: App\Controller\UserController::showAdminPage
+   
+new_product:
+   path: /product/add
+   methods: POST
+   controller: App\Controller\ProductController::addNewProduct
+
+delete_product:
+   path: /product/delete/{id}
+   methods: GET
+   controller: App\Controller\ProductController::deleteProduct
+   requirements: 
+      id: '\d+'
+
+buy:
+   path: /order/add/{id}
+   methods: GET
+   controller: App\Controller\OrderController::addToOrders
+   requirements: 
+      id: '\d+'

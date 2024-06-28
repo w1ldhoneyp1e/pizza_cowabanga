@@ -5,8 +5,12 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 
 use App\Service\UserServiceInterface;
 use App\Service\ImageServiceInterface;
+use App\Service\ProductServiceInterface;
+
 use App\Service\UserService;
 use App\Service\ImageService;
+use App\Service\ProductService;
+
 use App\Service\Data\UserData;
 
 
@@ -20,31 +24,39 @@ class UserController extends AbstractController
     private const DATE_TIME_FORMAT = "Y-m-d";
     private UserServiceInterface $userServiceInterface; 
     private ImageServiceInterface $imageServiceInterface; 
+    private ProductServiceInterface $productServiceInterface;
 
 
-    public function __construct(UserService $userService, ImageService $imageService)
+    public function __construct(UserService $userService, ImageService $imageService, ProductService $productService)
     {
         $this->userServiceInterface =  $userService;
         $this->imageServiceInterface =  $imageService;
+        $this->productServiceInterface = $productService;
     }
-    public function showRegisterForm(): Response
+    public function showRegisterPage(): Response
     {
-        return $this->render('user/register.html.twig');
+        return $this->render('user/register2.html.twig');
+    }
+    public function showLoginPage(): Response {
+        return $this->render('user/login.html.twig');
+    }
+    public function showAdminPage(): Response
+    {
+        return $this->render('products/admin.html.twig');
     }
     public function registerUser(Request $request): Response
     {
-        $fileName = $this->imageServiceInterface->saveImage($request->files->get('image'));
-
+        $requestArray = json_decode($request->getContent(), true);
+        var_dump($requestArray);
         $user = new UserData(
             null,
-            $request->get('first_name'),
-            $request->get('last_name'),
-            empty($request->get('middle_name')) ? null : $request->get('middle_name'),
-            $request->get('gender'),
-            $this->userServiceInterface->parseDateTime($request->get('birth_date'), self::DATE_TIME_FORMAT),
-            $request->get('email'),
-            empty($request->get('phone')) ? null : $request->get('phone'),
-            empty($fileName) ? null : $fileName,
+            $requestArray['email'],
+            $requestArray['password'],
+            null,
+            null,
+            null,
+            null,
+            null
         );
 
         
@@ -62,48 +74,44 @@ class UserController extends AbstractController
         $allUsers = $this->userServiceInterface->findAll();
         return $this->render('user/list.html.twig', ['users' => $allUsers]);
     }
-    public function main(): Response
-    {
-        return $this->render('main.html.twig');
-    }
+
     private function parseDate($dateString): ?string {
         if (preg_match('/^(\d{4})-(\d{2})-(\d{2})\s(\d{2}):(\d{2}):(\d{2})$/', $dateString, $matches)) {
             return $matches[1] . '-' . $matches[2] . '-' . $matches[3];
         }
         return null;
     }
-    public function updateUserRedirect(int $id): Response 
+    public function showUpdateUser(int $id): Response 
     {
         $user = $this->userServiceInterface->find($id);
         return $this->render('user/update.html.twig', ['user' => $user]);
     }
     public function updateUser(Request $request, int $id)
     {
+        $requestArray = json_decode($request->getContent(), true);
         if (!empty(($request->files->get('image')))) 
         {
-            $fileName = $this->imageServiceInterface->saveImage($request->files->get('image'));
+            $fileName = $this->imageServiceInterface->saveImageAsBase64($requestArray['avatar']);
         } else {
             $fileName = null;
         }
         $user = new UserData(
-            null,
-            $request->get('first_name'),
-            $request->get('last_name'),
-            empty($request->get('middle_name')) ? null : $request->get('middle_name'),
-            $request->get('gender'),
-            $this->userServiceInterface->parseDateTime($request->get('birth_date'), self::DATE_TIME_FORMAT),
-            $request->get('email'),
-            empty($request->get('phone')) ? null : $request->get('phone'),
+            $id,
+            $requestArray['email'],
+            empty($requestArray['password']) ? null : $requestArray['password'],
+            empty($requestArray['firstName']) ? null : $requestArray['firstName'],
+            empty($requestArray['lastName']) ? null : $requestArray['lastName'],
+            empty($requestArray['phone']) ? null : $requestArray['phone'],
+            empty($requestArray['adress']) ? null : $requestArray['adress'],
             empty($fileName) ? null : $fileName,
         );
-        
         $this->userServiceInterface->updateInfo($user);
         return $this->redirectToRoute('show_user', ['id' => $id]);
     }
     public function deleteUser(int $id): Response
     {
-        $id = $this->userServiceInterface->find($id)->getId();
         $this->userServiceInterface->delete($id);
-        return $this->redirectToRoute('show_all_users');
+        return $this->redirectToRoute('index');
     }
+    
 }

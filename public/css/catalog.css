@@ -1,0 +1,58 @@
+* {
+    margin: 0;
+}
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.product {
+    width: 364px;
+    margin: 0 22.5px;
+    margin-bottom: 105px;
+}
+.product__img-container {
+    border-radius: 20px;
+    margin-bottom: 16px;
+}
+.product__img {
+    display: block;
+    width: 364px;
+    height: 364px;
+    background-size: cover;
+}
+.product__name {
+    color: #262626;
+    font-family: 'Euclid Circular B';
+    font-size: 27px;
+    font-weight: 600;
+    text-decoration: none;
+}
+.product__ingredients {
+    color: #262626;
+    font-family: 'Euclid Circular B';
+    font-size: 15px;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+.product__price-and-buy {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.product__price {
+    color: #262626;
+    font-family: 'Euclid Circular B';
+    font-size: 27px;
+    font-weight: 600;
+}
+.product_buy-button {
+    background-color: #175B1C;
+    padding: 6px 34px;
+    color: #ffffff;
+    font-family: 'Euclid Circular B';
+    font-weight: 600;
+    border-radius: 25px;
+    font-size: 12px;
+    text-decoration: none;
+}

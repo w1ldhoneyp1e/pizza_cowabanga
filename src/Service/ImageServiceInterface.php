@@ -10,4 +10,6 @@ interface ImageServiceInterface
     public function getExtention();
 
     public function deleteImage();
+    public function saveImageAsBase64(string $imageBase64): string;
+
 }
